@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Father's Day!</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            background: #fceabb;
+            background: linear-gradient(to right, #f8b500, #fceabb);
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 3em;
+            margin-top: 50px;
+            animation: bounce 1s infinite alternate;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff6f61;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #ff3b2e;
+        }
+        #joke {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        img {
+            width: 200px;
+            margin-top: 30px;
+            transition: transform 0.3s;
+        }
+        #badge {
+            display: none;
+            font-size: 2em;
+            color: #4acf50;
+            margin-top: 20px;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Happy Father's Day! 🎉</h1>
+    <button onclick="showJoke()">Click for a Dad Joke!</button>
+
+    <div id="joke"></div>
+    <img id="dadPic" src="dadpic.jpeg" alt="Cool Dad" onclick="makeCool()">
+    <img src="dadPic2.jpeg" alt="Hot Dad" onclick="makeCool()">
+    <div id="badge">#1 Dad - Certified Cool 😎</div>
+    
+    <script>
+        const jokes = [
+            "Why don't eggs tell jokes? They'd crack each other up!", 
+            "I only know 25 letters of the alphabet. I don't know y.",
+            "What do you call fake spaghetti? An impasta!",
+            "I'm reading a book about anti-gravity. It's impossible to put down.",
+            "How do you make a tissue dance? You put a little boogie in it.",
+            "They say 3 out of 5 people suffer from a chronic disease. Does rhat mean 2 of them enjoy it?",
+            "What do you call someone who loves Mondays? Retired.",
+            "Dark humour is like food. Not everyone gets it.",
+            "Why do kids in China not believe in Santa? They make the toys.",
+            "I have tons of jokes about unemployment. None of them work.",
+            "I made a website for orphans. It doesn't have a home page",
+            "If you donate a kidney, everyone loves you. But donate 5 and everyone is yelling"
+        ];
+
+        function showJoke() {
+            const joke = jokes[Math.floor(Math.random() * jokes.length)];
+
+            document.getElementById('joke').innerText = joke;
+            confetti();
+        }
+
+        function makeCool() {
+            const img = document.getElementById('dadPic');
+            img.style.transform = 'rotate(10deg)scale(1.2)';
+            
+
+            document.getElementById('badge').style.display = 'block';
+            confetti();
+        }
+
+        function confetti() {
+            for (let i = 0; i < 30; i++) {
+                let confetto = document.createElement('div');
+                confetto.style.position = 'fixed';
+                confetto.style.top = Math.random() * window.innerHeight + 'px';
+                confetto.style.left = Math.random() * window.innerWidth + 'px';
+                confetto.style.width = '10px';
+                confetto.style.height = '10px';
+                confetto.style.background = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                confetto.style.opacity = '0.7';
+                confetto.style.zIndex = '1000';
+                confetto.style.borderRadius = '50%';
+
+                document.body.appendChild(confetto);
+                  setTimeout(() => confetto.remove(), 2000);
+            }
+        }
+    </script>
+</body>
+</html>
